@@ -14,9 +14,6 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
-[tool.poetry.paths]
-source = "src"
-
 [project.urls]
 Homepage = "https://github.com/alistratov/bit-permutation"
 Issues = "https://github.com/alistratov/bit-permutation/issues"
