@@ -4,6 +4,7 @@ It offers methods for generating permutations, checking permutation properties, 
 between different permutation representations.
 """
 import random
+from typing import Optional, Union
 from collections.abc import Iterable
 
 from .constants import MAX_PERMUTATION_LENGTH, PERM_2, PERM_3_NOFP, PERM_3_INVOL
@@ -34,7 +35,7 @@ class BitPermutation:
             return i + 1, tuple(p[:i + 1])
 
     @staticmethod
-    def _num_of_fixed_points(p: tuple[int, ...] | list[int]) -> int:
+    def _num_of_fixed_points(p: Union[tuple[int, ...], list[int]]) -> int:
         # Calculate number of fixed points (elements that are mapped to themselves)
         return sum(1 for i, v in enumerate(p) if i == v)
 
@@ -45,7 +46,7 @@ class BitPermutation:
         return s
 
     # --- Initialization ---
-    def __init__(self, permutation: Iterable[int] | None = None):
+    def __init__(self, permutation: Optional[Iterable[int]] = None):
         if permutation is None:
             p = []
         else:
