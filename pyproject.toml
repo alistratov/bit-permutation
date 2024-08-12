@@ -1,12 +1,12 @@
 [project]
 name = "bit-permutation"
-version = "0.0.14"
+version = "0.0.15"
 authors = [
   { name="Oleh Alistratov", email="alistratov.dev@gmail.com" },
 ]
 description = "Shuffle bits in integer numbers"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python :: 3",

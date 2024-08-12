@@ -1,8 +1,6 @@
 """
 The BitShuffle class acts as a container that combines both a permutation and an inversion operation.
 """
-from typing import Optional
-
 from .permutation import BitPermutation
 from .xor import BitInversion
 
@@ -10,8 +8,8 @@ from .xor import BitInversion
 class BitShuffle:
     # --- Initialization ---
     def __init__(self,
-                 permutation: Optional[BitPermutation] = None,
-                 inversion: Optional[BitInversion] = None,
+                 permutation: BitPermutation | None = None,
+                 inversion: BitInversion | None = None,
                  ):
         if permutation is None:
             permutation = BitPermutation()
