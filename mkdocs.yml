@@ -1,4 +1,4 @@
-site_name: bit-permutation Python package
+site_name: bit-permutation
 nav:
   - Home: index.md
 theme: readthedocs

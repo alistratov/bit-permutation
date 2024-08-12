@@ -1,7 +1,7 @@
 # bit-permutation
 Shuffle bits in integer numbers.
 
-![PyPI - Version](https://img.shields.io/pypi/v/bit-permutation) [![codecov](https://codecov.io/gh/alistratov/bit-permutation/graph/badge.svg?token=MSJLFL8XFD)](https://codecov.io/gh/alistratov/bit-permutation)
+![PyPI - Version](https://img.shields.io/pypi/v/bit-permutation) [![Documentation Status](https://readthedocs.org/projects/bit-permutation/badge/?version=latest)](https://bit-permutation.readthedocs.io/en/latest/?badge=latest) [![codecov](https://codecov.io/gh/alistratov/bit-permutation/graph/badge.svg?token=MSJLFL8XFD)](https://codecov.io/gh/alistratov/bit-permutation) 
 
 
 ## Overview
