@@ -1,4 +1,5 @@
 """
+The BitInversion class provides functionality to flip (or invert bits), using XOR operation.
 """
 import random
 

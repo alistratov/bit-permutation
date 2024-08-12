@@ -1,4 +1,5 @@
 """
+The BitShuffle class acts as a container that combines both a permutation and an inversion operation.
 """
 from .permutation import BitPermutation
 from .xor import BitInversion

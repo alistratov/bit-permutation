@@ -1,14 +1,7 @@
 """
-Notations: https://en.wikiversity.org/wiki/Permutation_notation
-
- * https://en.wikipedia.org/wiki/Random_permutation
- * https://en.wikipedia.org/wiki/Permutation#Algorithms_to_generate_permutations
- * https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
- * https://en.wikipedia.org/wiki/Bit-reversal_permutation
- * https://stackoverflow.com/questions/57316214/efficiently-randomly-shuffling-the-bits-of-a-sequence-of-words
-
- * http://programming.sirrida.de/calcperm.php
-
+The BitPermutation class handles the creation and manipulation of bit permutations.
+It offers methods for generating permutations, checking permutation properties, and converting
+between different permutation representations.
 """
 import random
 from collections.abc import Iterable
