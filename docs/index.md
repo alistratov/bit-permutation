@@ -1,9 +1,6 @@
 # bit-permutation
 Shuffle bits in integer numbers.
 
-![PyPI - Version](https://img.shields.io/pypi/v/bit-permutation) [![codecov](https://codecov.io/gh/alistratov/bit-permutation/graph/badge.svg?token=MSJLFL8XFD)](https://codecov.io/gh/alistratov/bit-permutation)
-
-
 ## Overview
 The `bit-permutation` package provides tools for shuffling bits in 
 integer numbers. It includes a set of classes designed to handle 
@@ -33,13 +30,6 @@ bijective transformation of a set of integers.
 3. **Not for mathematical applications**: Although the module provides some functions for checking the properties of permutations, it is not intended for rigorous mathematical applications. The provided functionality may be useful for basic operations and educational purposes, but it should not be relied upon for advanced or formal studies in combinatorics or group theory.
 
 
-## Installation
-Requires Python version 3.10 or higher. To install the package, run the following command:
-```bash
-pip install bit-permutation
-```
-
-
 ## Synopsis
 ```python
 from bit_permutation import BitShuffle
@@ -62,9 +52,26 @@ print(bs.pack())
 ```
 
 
-## Classes
-### BitPermutation
-The `BitPermutation` class appears to handle various aspects of bit permutation, including generating random permutations, checking properties of permutation (like whether it is identity or involution), and providing different representations (cycles, tuples, Lehmer codes).
+## License
+Copyright 2024 Oleh Alistratov
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+## Installation
+Requires Python version 3.10 or higher. To install the package, run the following command:
+```bash
+pip install bit-permutation
+```
+
 
 ## Performance overview
 The module leverages basic bitwise operations such as shifts and mask
@@ -83,15 +90,7 @@ However, composite tests have shown that on a modern processor core
 1 million operations per second for 16-bit numbers and 
 100,000 operations per second for 128-bit numbers.
 
-## License
-Copyright 2024 Oleh Alistratov
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+## Classes
+### BitPermutation
+The `BitPermutation` class appears to handle various aspects of bit permutation, including generating random permutations, checking properties of permutation (like whether it is identity or involution), and providing different representations (cycles, tuples, Lehmer codes).
