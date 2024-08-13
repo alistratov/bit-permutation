@@ -1,4 +1,19 @@
 site_name: bit-permutation
+site_author: Oleh Alistratov
+repo_url: https://github.com/alistratov/bit-permutation
+
 nav:
-  - Home: index.md
+  - Overview: index.md
+  - Classes:
+    - BitPermutation: classes/bit_permutation.md
+    - BitInversion: classes/bit_inversion.md
+    - BitShuffle: classes/bit_shuffle.md
+  - References: references.md
+  - License: license.md
+
 theme: readthedocs
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: "#"

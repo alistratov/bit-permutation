@@ -1,0 +1,2 @@
+## BitShuffle
+The `BitShuffle` class provides a way to shuffle bits in integer numbers, combining the functionality of `BitPermutation` and `BitInversion` classes. The shuffling operation is performed by applying a permutation and an inversion to the input number. The permutation is responsible for rearranging the bits, while the inversion is responsible for inverting them.

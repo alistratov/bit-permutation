@@ -1,7 +1,24 @@
 # bit-permutation
 Shuffle bits in integer numbers.
 
-![PyPI - Version](https://img.shields.io/pypi/v/bit-permutation) [![Documentation Status](https://readthedocs.org/projects/bit-permutation/badge/?version=latest)](https://bit-permutation.readthedocs.io/en/latest/?badge=latest) [![codecov](https://codecov.io/gh/alistratov/bit-permutation/graph/badge.svg?token=MSJLFL8XFD)](https://codecov.io/gh/alistratov/bit-permutation) 
+![PyPI - Version](https://img.shields.io/pypi/v/bit-permutation) [![codecov](https://codecov.io/gh/alistratov/bit-permutation/graph/badge.svg?token=MSJLFL8XFD)](https://codecov.io/gh/alistratov/bit-permutation) [![Documentation Status](https://readthedocs.org/projects/bit-permutation/badge/?version=latest)](https://bit-permutation.readthedocs.io/en/latest/?badge=latest) ![PyPI - Downloads](https://img.shields.io/pypi/dm/bit-permutation) 
+
+
+## Synopsis
+```bash
+pip install bit-permutation
+```
+
+```python
+>>> from bit_permutation import BitShuffle
+
+>>> bs = BitShuffle.generate_random(16) 
+>>> shuffled = [bs.shuffle(x) for x in range(10)]
+[42525, 42517, 9757, 9749, 42509, 42501, 9741, 9733, 34333, 34325]
+
+>>> original = [bs.unshuffle(y) for y in shuffled]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
 
 
 ## Overview
@@ -28,67 +45,21 @@ bijective transformation of a set of integers.
 ## Disclaimer
 1. **Not intended for cryptographic use**: this module is not designed or intended for use in cryptography. The algorithms and functions provided do not offer the security guarantees required for cryptographic applications.
 
-2. **Not suitable for highly loaded applications**: The module is not optimized for performance in highly loaded or real-time environments. Users should avoid deploying this module in scenarios where performance and efficiency are critical. See also the [Performance overview](#performance-overview) section.
+2. **Not suitable for highly loaded applications**: The module is not optimized for performance in highly loaded or real-time environments. Users should avoid deploying this module in scenarios where performance and efficiency are critical. See also the [Performance overview](https://bit-permutation.readthedocs.io/en/latest/#performance-overview) section in the documentation.
 
-3. **Not for mathematical applications**: Although the module provides some functions for checking the properties of permutations, it is not intended for rigorous mathematical applications. The provided functionality may be useful for basic operations and educational purposes, but it should not be relied upon for advanced or formal studies in combinatorics or group theory.
-
-
-## Installation
-Requires Python version 3.10 or higher. To install the package, run the following command:
-```bash
-pip install bit-permutation
-```
+3. **Not for mathematical applications**: Although the module provides some functions for checking the properties of permutations, it is not intended for rigorous mathematical applications. The provided functionality may be useful for basic operations and educational purposes, but is insufficient for advanced or formal studies in combinatorics or group theory.
 
 
-## Synopsis
-```python
-from bit_permutation import BitShuffle
+## Documentation
+* [Read the docs](https://bit-permutation.readthedocs.io/en/latest/)
 
-# Create a random permutation for lower 16 bits.
-# Higher bits will be left unchanged.
-bs = BitShuffle.generate_random(16)
-
-# Sequential numbers turn into a list, for example,
-# [42525, 42517, 9757, 9749, 42509, 42501, 9741, 9733, 34333, 34325]
-shuffled = [bs.shuffle(x) for x in range(10)]
-
-# Back to [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-original = [bs.unshuffle(y) for y in shuffled]
-
-# Prints 614290679212893317370896 or whatever, a number that contains 
-# the permutation and inversion state and can be used 
-# to restore it later with BitShuffle.unpack()
-print(bs.pack())
-```
-
-
-## Classes
-### BitPermutation
-The `BitPermutation` class appears to handle various aspects of bit permutation, including generating random permutations, checking properties of permutation (like whether it is identity or involution), and providing different representations (cycles, tuples, Lehmer codes).
-
-## Performance overview
-The module leverages basic bitwise operations such as shifts and mask
-applications to perform permutations, rather than employing advanced
-algorithms optimized for speed, like Beneš transformation network 
-or bytes swapping. While methods are not the most optimal, they are
-straightforward and sufficient for many use cases.
-
-It's important to note that Python, as an interpreted language, is
-generally slower compared to compiled languages. The actual speed of
-execution can vary depending on several factors, including the specific
-permutation chosen and the number of bits set in the given argument.
-
-However, composite tests have shown that on a modern processor core 
-(as of 2024), the module is capable of performing approximately 
-1 million operations per second for 16-bit numbers and 
-100,000 operations per second for 128-bit numbers.
 
 ## License
 Copyright 2024 Oleh Alistratov
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
-You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,

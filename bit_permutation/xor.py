@@ -8,15 +8,15 @@ from .constants import MAX_PERMUTATION_LENGTH
 
 class BitInversion:
     # --- Initialization ---
-    def __init__(self, operand: int = 0):
-        if operand < 0:
-            raise ValueError('Negative operand')
+    def __init__(self, pattern: int = 0):
+        if pattern < 0:
+            raise ValueError('Negative pattern')
 
-        self._x = operand
+        self._x = pattern
         self._n: int = self._x.bit_length()  # Length of the operand (up to the highest bit set)
 
         if self._n > MAX_PERMUTATION_LENGTH:
-            raise ValueError('Too long operand')
+            raise ValueError('Too long pattern')
 
     # --- Special methods ---
     def __len__(self) -> int:
@@ -42,6 +42,9 @@ class BitInversion:
         return f'{self.__class__.__name__}({self._x})'
 
     def __int__(self) -> int:
+        return self._x
+
+    def __index__(self) -> int:
         return self._x
 
     # --- Properties ---

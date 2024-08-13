@@ -27,6 +27,7 @@ class TestBitInversion(unittest.TestCase):
 
         bi = BitInversion(0xDEADBEEF)
         self.assertEqual(int(bi), 0xDEADBEEF)
+        self.assertEqual(hex(bi), '0xdeadbeef')  # test __index__
 
     def test_repr(self):
         bi = BitInversion()
