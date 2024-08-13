@@ -1,6 +1,7 @@
 site_name: bit-permutation
 site_author: Oleh Alistratov
 repo_url: https://github.com/alistratov/bit-permutation
+edit_uri: blob/main/docs/
 
 nav:
   - Overview: index.md
