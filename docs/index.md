@@ -18,22 +18,22 @@ combination of bit permutation and inversion, resulting in a
 bijective transformation of a set of integers.
 
 ## Table of contents
-- [Disclaimer](#disclaimer)
-- [Installation](#installation)
-- [Example](#example)
-- [Performance overview](#performance-overview)
-- Classes:
-  - [BitPermutation](classes/bit_permutation.md)
-  - [BitInversion](classes/bit_inversion.md)
-  - [BitShuffle](classes/bit_shuffle.md)
-- [References](references.md)
-- [License](license.md)
+* [Disclaimer](#disclaimer)
+* [Installation](#installation)
+* [Example](#example)
+* [Package contents](#package-contents)
+    * [BitPermutation](classes/bit_permutation.md)
+    * [BitInversion](classes/bit_inversion.md)
+    * [BitShuffle](classes/bit_shuffle.md)
+* [Performance considerations](#performance-considerations)
+* [References](references.md)
+* [License](license.md)
 
 
 ## Disclaimer
 !!! warning ""
     1. **Not intended for cryptographic use**: this module is not designed or intended for use in cryptography. The algorithms and functions provided do not offer the security guarantees required for cryptographic applications.
-    1. **Not suitable for highly loaded applications**: the module is not optimized for performance in highly loaded or real-time environments. Users should avoid deploying this module in scenarios where performance and efficiency are critical. See also the [Performance overview](#performance-overview) section.
+    1. **Not suitable for highly loaded applications**: the module is not optimized for performance in highly loaded or real-time environments. Users should avoid deploying this module in scenarios where performance and efficiency are critical. See also the [Performance considerations](#performance-considerations) section.
     1. **Not for mathematical applications**: although the module provides some functions for checking the properties of permutations, it is not intended for rigorous mathematical applications. The provided functionality may be useful for basic operations and educational purposes, but is insufficient for advanced or formal studies in combinatorics or group theory.
 
 
@@ -65,8 +65,17 @@ original = [bs.unshuffle(y) for y in shuffled]
 print(bs.pack())
 ```
 
+## Package contents
+The package `bit-permutation` provides three classes for export:
 
-## Performance overview
+* [BitPermutation](classes/bit_permutation.md), which provides functionality to permute bits in an integer number
+* [BitInversion](classes/bit_inversion.md), which allows inverting bits in an integer number using the XOR operation
+* [BitShuffle](classes/bit_shuffle.md), which combines the functionality of the previous two classes to shuffle bits in an integer number
+
+Instances of all classes are hashable and should be treated as immutable. Instances can be compared for equality within the class.
+
+
+## Performance considerations
 The module leverages basic bitwise operations such as shifts and mask
 applications to perform permutations, rather than employing advanced
 algorithms optimized for speed, like Beneš transformation network 

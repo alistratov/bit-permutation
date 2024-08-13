@@ -21,31 +21,31 @@ The length of the permutation must be less than or equal to 1023.
 
 #### generate_random
 ```python
-generate_random(cls, length: int) -> BitPermutation
+BitPermutation.generate_random(length: int)
 ```
 Generates a random permutation of a specified length.
 
 #### generate_derangement
 ```python
-generate_derangement(cls, length: int) -> BitPermutation
+BitPermutation.generate_derangement(length: int)
 ```
 Generates a random derangement of a specified length. A derangement is a permutation where no fixed points exist, meaning that no bit remains in its original position.
 
 #### generate_involution
 ```python
-generate_involution(cls, length: int) -> BitPermutation
+BitPermutation.generate_involution(length: int)
 ```
 Generates a random involution permutation of a specified length. An involution is a permutation that is its own inverse, meaning that applying the permutation twice returns the original sequence.
 
 #### from_lehmer_code
 ```python
-from_lehmer_code(cls, lehmer: Iterable) -> BitPermutation
+BitPermutation.from_lehmer_code(lehmer: Iterable)
 ```
 Creates a permutation from a Lehmer code. The Lehmer code is a sequnce of integers described below in the [`as_lehmer_code()`](#as_lehmer_code) method.
 
 #### unpack
 ```python
-unpack(cls, number: int) -> BitPermutation
+BitPermutation.unpack(number: int)
 ```
 Restores the permutation from the integer. The packed integer should be obtained using the [`pack()`](#pack) method.
 
@@ -108,7 +108,7 @@ Returns the permutation as a tuple of integers, as defined in the constructor.
 ```python
 as_cycles() -> list[list[int]]
 ```
-Returns the permutation as a list of disjoint cycles. For example, the permutation `(2, 0, 1)` is represented as `[[0, 2], [1]]`.
+Returns the permutation as a list of disjoint cycles. For example, the permutation `(2, 1, 0)` is represented as `[[0, 2], [1]]`, meaning that the bits at positions 0 and 2 are swapped, and the bit at position 1 remains unchanged.
 
 #### as_lehmer_code
 ```python
@@ -126,36 +126,42 @@ pack() -> int
 ```
 Packs the permutation into a single integer. The packed integer can be used to restore the permutation later using the `unpack` class method.
 
-Caution, the resulting number can be very large. Despite the compact method of encoding the Lemaire code as a number in factorial notation, which means a compact notation, the total number of possible permutations is equal to a factorial of length.
+Caution, the resulting number can be very large. Despite the method of encoding the Lehmer code as a number in [factorial number system](https://en.wikipedia.org/wiki/Factorial_number_system), which means a compact notation, the total number of possible permutations is equal to a factorial of sequence length.
 
 
 ### Examples
-The operation of excluding or is well known and needs no explanation.
-
-| Bit position           | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
-|------------------------|---|---|---|---|---|---|---|---|
-| BitPermutation() pattern | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 |
-| apply() argument       | 1 | 1 | 0 | 0 | 1 | 1 | 0 | 0 |
-| Result                 | 0 | 1 | 1 | 0 | 0 | 1 | 1 | 0 |
-
+Create a permutation:
 ```python
-inversion = BitPermutation(0b_1010_1010)
+bp = BitPermutation((2, 0, 3, 1))
 
-assert inversion.apply(0b_1100_1100) == 0b_0110_0110
-assert inversion.apply(209) == 123
-assert inversion.apply(-1) == -171
-assert inversion.apply(inversion.apply(209)) == 209
+assert bp.permute(0b1010) == 0b0011
+assert bp.invert(0b0011) == 0b1010
 
-print(len(inversion))  # 8
-print(inversion.is_identity())  # False
-print(inversion.get_number_of_fixed_points())  # 4
+print(len(bp))  # 4
+print(bp.get_number_of_fixed_points())  # 0
+print(bp.get_inversion_count())  # 3
+print(bp.is_identity())  # False
+print(bp.is_derangement())  # True
+print(bp.is_involution())  # False
+
+print(bp.as_tuple())  # (2, 0, 3, 1)
+print(bp.as_cycles())  # [[0, 2, 3, 1]]
+print(bp.as_lehmer_code())  # (2, 0, 1, 0)
+print(bp.pack())  # 13316
+
+recovered = BitPermutation.unpack(13316)
+print(recovered.as_tuple())  # (2, 0, 3, 1)
+assert bp == recovered
 ```
 
-Generate random inversions with different densities of zero bits:
+Generate random permutations:
 ```python
-r1 = BitPermutation.generate_random(32, zero_probability=0.1)
-print(bin(r1))  # e.g., 0b11111111111011111111011111101111
+b1 = BitPermutation.generate_random(4)
+print(b1.as_tuple())  # (2, 3, 1, 0)
 
-r2 = BitPermutation.generate_random(32, zero_probability=0.9)
-print(bin(r2))  # e.g., 0b10100000010000000000000001000000
+b2 = BitPermutation.generate_derangement(4)
+print(b2.as_tuple())  # (2, 0, 3, 1)
+
+b3 = BitPermutation.generate_involution(4)
+print(b3.as_tuple())  # (0, 1, 3, 2)
 ```

@@ -51,7 +51,14 @@ bijective transformation of a set of integers.
 
 
 ## Documentation
-* [Read the docs](https://bit-permutation.readthedocs.io/en/latest/)
+Read the full documentation at [Read the docs](https://bit-permutation.readthedocs.io/en/latest/).
+
+The package `bit-permutation` provides three classes for export:
+* [BitPermutation](https://bit-permutation.readthedocs.io/en/latest/classes/bit_permutation/), which provides functionality to permute bits in an integer number
+* [BitInversion](https://bit-permutation.readthedocs.io/en/latest/classes/bit_inversion/), which allows inverting bits in an integer number using the XOR operation
+* [BitShuffle](https://bit-permutation.readthedocs.io/en/latest/classes/bit_shuffle/), which combines the functionality of the previous two classes to shuffle bits in an integer number
+
+Instances of all classes are hashable and should be treated as immutable. Instances can be compared for equality within the class.
 
 
 ## License

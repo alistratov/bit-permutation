@@ -15,7 +15,7 @@ Initializes the `BitInversion` object with a specified inversion pattern.
 
 #### generate_random
 ```python
-generate_random(cls, length: int, zero_probability: float = 0.5) -> BitInversion
+BitInversion.generate_random(length: int, zero_probability: float = 0.5)
 ```
 
 Generates a random inversion pattern with a specified length in bits and probability of zero bits.
@@ -60,6 +60,7 @@ The operation of excluding or is well known and needs no explanation.
 Apply the inversion:
 ```python
 bi = BitInversion(0b_1010_1010)
+assert bi == 0b_1010_1010
 
 assert bi.apply(0b_1100_1100) == 0b_0110_0110
 assert bi.apply(209) == 123
