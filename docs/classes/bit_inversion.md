@@ -20,7 +20,7 @@ BitInversion.generate_random(length: int, zero_probability: float = 0.5)
 
 Generates a random inversion pattern with a specified length in bits and probability of zero bits.
 
-### Methods
+### Properties
 #### len
 Returns the length of the inversion pattern in bits. The same as the `int.bit_length()`.
 
@@ -41,8 +41,8 @@ get_number_of_fixed_points() -> int
 ```
 Returns the number of fixed points in the inversion pattern. A fixed point is a bit that remains unchanged after the inversion.
 
+### Transformation
 #### apply 
-
 ```python
 apply(x: int) -> int
 ```

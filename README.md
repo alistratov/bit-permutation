@@ -45,7 +45,7 @@ bijective transformation of a set of integers.
 ## Disclaimer
 1. **Not intended for cryptographic use**: this module is not designed or intended for use in cryptography. The algorithms and functions provided do not offer the security guarantees required for cryptographic applications.
 
-2. **Not suitable for highly loaded applications**: The module is not optimized for performance in highly loaded or real-time environments. Users should avoid deploying this module in scenarios where performance and efficiency are critical. See also the [Performance overview](https://bit-permutation.readthedocs.io/en/latest/#performance-overview) section in the documentation.
+2. **Not suitable for highly loaded applications**: The module is not optimized for performance in highly loaded or real-time environments. Users should avoid deploying this module in scenarios where performance and efficiency are critical.
 
 3. **Not for mathematical applications**: Although the module provides some functions for checking the properties of permutations, it is not intended for rigorous mathematical applications. The provided functionality may be useful for basic operations and educational purposes, but is insufficient for advanced or formal studies in combinatorics or group theory.
 

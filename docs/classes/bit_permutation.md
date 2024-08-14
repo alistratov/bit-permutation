@@ -41,7 +41,7 @@ Generates a random involution permutation of a specified length. An involution i
 ```python
 BitPermutation.from_lehmer_code(lehmer: Iterable)
 ```
-Creates a permutation from a Lehmer code. The Lehmer code is a sequnce of integers described below in the [`as_lehmer_code()`](#as_lehmer_code) method.
+Creates a permutation from a Lehmer code. The Lehmer code is a sequence of integers described below in the [`as_lehmer_code()`](#as_lehmer_code) method.
 
 #### unpack
 ```python
@@ -52,7 +52,7 @@ Restores the permutation from the integer. The packed integer should be obtained
 
 ### Properties
 #### len
-Returns the length of the permutation. For performance reasons, the maximum allowable length is 1023. The identity permutation has a length of zero. 
+Returns the length of the permutation. For performance reasons, the maximum allowable length is 1023. The identity permutation has a length of zero. This also means the interesting fact that the length of a permutation is never equal to one.
 
 #### is_identity
 ```python
