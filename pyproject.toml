@@ -1,6 +1,6 @@
 [project]
 name = "bit-permutation"
-version = "1.0.17"
+version = "1.0.18"
 authors = [
   { name="Oleh Alistratov", email="alistratov.dev@gmail.com" },
 ]
