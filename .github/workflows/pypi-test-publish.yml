@@ -8,9 +8,11 @@
 
 name: Upload Python Package (Test)
 
-on:
-  release:
-    types: [published]
+on: workflow_dispatch
+
+# on:
+#   release:
+#     types: [published]
 
 permissions:
   contents: read
