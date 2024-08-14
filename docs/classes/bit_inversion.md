@@ -1,28 +1,26 @@
 ## BitInversion
-The `BitInversion` class provides functionality to invert bits using the XOR (exclusive or) operation. It is straightforward, containing only a single bitmask—referred to as the inversion pattern—that determines which bits should be inverted.
+The `BitInversion` class inverts bits using the XOR (exclusive or) operation. It is straightforward, containing a single bitmask—referred to as the inversion pattern—that specifies which bits to invert.
 
-The length of the inversion pattern is defined by the position of its highest set bit. When the inversion is applied, only the bits within the pattern's length are affected, while bits higher than this length remain unchanged. This approach ensures that the inversion works correctly for both positive and negative numbers.
+The length of the inversion pattern is determined by the position of its highest set bit. When the inversion is applied, only the bits within this length are affected; bits beyond this length remain unchanged. This approach ensures correct behavior for both positive and negative numbers.
 
 ### Constructors
 #### \_\_init__
 ```python
 __init__(self, pattern: int = 0)
 ```
-
 Initializes the `BitInversion` object with a specified inversion pattern.
 
-- `pattern` (int): the bitmask used to determine which bits should be inverted. Operand must be in range [0, 2<sup>1023</sup> – 1].
+- `pattern` (int): bitmask used to determine which bits are inverted. The value must be in range [0, 2<sup>1023</sup> – 1].
 
 #### generate_random
 ```python
 BitInversion.generate_random(length: int, zero_probability: float = 0.5)
 ```
-
-Generates a random inversion pattern with a specified length in bits and probability of zero bits.
+Generates a random inversion pattern with a specified length in bits and a given probability for zero bits.
 
 ### Properties
 #### len
-Returns the length of the inversion pattern in bits. The same as the `int.bit_length()`.
+Returns the length of the inversion pattern in bits, equivalent to `int.bit_length()`.
 
 For performance reasons, the maximum allowable length is 1023.
 
@@ -33,7 +31,7 @@ Returns the inversion pattern.
 ```python
 is_identity() -> bool
 ```
-Checks if the inversion pattern is an identity operation, meaning that no bits are inverted; or in other words, the inversion pattern is zero.
+Checks if the inversion pattern is an identity operation, meaning no bits are inverted; i.e., the inversion pattern is zero.
 
 #### get_number_of_fixed_points
 ```python
@@ -49,7 +47,7 @@ apply(x: int) -> int
 Applies the inversion pattern to the input integer `x`. The result is the integer with inverted bits. Because XOR operation is reversible, applying the same inversion pattern twice will return the original integer.
 
 ### Examples
-The operation of excluding or is well known and needs no explanation.
+The XOR operation is well-known and requires no further explanation.
 
 | Bit position           | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
 |------------------------|---|---|---|---|---|---|---|---|

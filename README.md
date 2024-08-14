@@ -9,56 +9,48 @@ Shuffle bits in integer numbers.
 pip install bit-permutation
 ```
 
-```python
+```python-repl
 >>> from bit_permutation import BitShuffle
 
->>> bs = BitShuffle.generate_random(16) 
+>>> bs = BitShuffle.generate_random(16)  # Permutation for lower 16 bits
+>>> bs.shuffle(123)
+41868
+>>> bs.unshuffle(41868)
+123
+
 >>> shuffled = [bs.shuffle(x) for x in range(10)]
+>>> shuffled
 [42525, 42517, 9757, 9749, 42509, 42501, 9741, 9733, 34333, 34325]
 
->>> original = [bs.unshuffle(y) for y in shuffled]
+>>> [bs.unshuffle(y) for y in shuffled]
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
 
 ## Overview
-The `bit-permutation` package provides tools for shuffling bits in 
-integer numbers. It includes a set of classes designed to handle 
-bit permutations and inversions.
+The pure-Python `bit-permutation` package provides tools for shuffling bits in integers, including classes designed for bit permutations and inversions.
 
-The primary application of this module is to obscure monotonically
-increasing numbers, such as auto-incrementing database identifiers, 
-which can be vulnerable to exploitation through 
-[Insecure Direct Object Reference](https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html) 
-as described by OWASP. By rearranging and inverting bits 
-within these integer identifiers, the sequential nature of them 
-can be made less obvious, thereby adding an additional layer of security.
+This module is primarily useful for obscuring monotonically increasing numbers, such as auto-incrementing database identifiers, which can be vulnerable to [Insecure Direct Object Reference](https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html) as described by OWASP. By rearranging and inverting bits within these identifiers, the sequential nature of the numbers becomes less obvious, adding a layer of security.
 
-While this technique is an example of security through obscurity 
-and should not be relied upon as a substitute for comprehensive
-information hiding practices, it can still be valuable in various
-scenarios. The module enables the creation of a defined or random
-combination of bit permutation and inversion, resulting in a 
-bijective transformation of a set of integers.
+While this technique is an example of security through obscurity and should not replace comprehensive information hiding practices, it can still be valuable in various scenarios. The module allows to create a defined or random combination of bit permutation and inversion, resulting in a bijective transformation of a set of integers.
 
 
 ## Disclaimer
 1. **Not intended for cryptographic use**: this module is not designed or intended for use in cryptography. The algorithms and functions provided do not offer the security guarantees required for cryptographic applications.
 
-2. **Not suitable for highly loaded applications**: The module is not optimized for performance in highly loaded or real-time environments. Users should avoid deploying this module in scenarios where performance and efficiency are critical.
+2. **Not suitable for highly loaded applications**: the module is not optimized for performance in highly loaded or real-time environments. It should not be used in scenarios where performance and efficiency are critical.
 
-3. **Not for mathematical applications**: Although the module provides some functions for checking the properties of permutations, it is not intended for rigorous mathematical applications. The provided functionality may be useful for basic operations and educational purposes, but is insufficient for advanced or formal studies in combinatorics or group theory.
-
+3. **Not for mathematical applications**: although the module provides functions for checking permutation properties, it is not intended for rigorous mathematical applications. The functionality may be useful for basic operations and educational purposes but is insufficient for advanced combinatorics or group theory studies.
 
 ## Documentation
 Read the full documentation at [Read the docs](https://bit-permutation.readthedocs.io/en/latest/).
 
-The package `bit-permutation` provides three classes for export:
-* [BitPermutation](https://bit-permutation.readthedocs.io/en/latest/classes/bit_permutation/), which provides functionality to permute bits in an integer number
-* [BitInversion](https://bit-permutation.readthedocs.io/en/latest/classes/bit_inversion/), which allows inverting bits in an integer number using the XOR operation
-* [BitShuffle](https://bit-permutation.readthedocs.io/en/latest/classes/bit_shuffle/), which combines the functionality of the previous two classes to shuffle bits in an integer number
+The `bit-permutation` package provides three classes for export:
+* [BitPermutation](https://bit-permutation.readthedocs.io/en/latest/classes/bit_permutation/): permutes bits in an integer
+* [BitInversion](https://bit-permutation.readthedocs.io/en/latest/classes/bit_inversion/): inverts bits in an integer using XOR
+* [BitShuffle](https://bit-permutation.readthedocs.io/en/latest/classes/bit_shuffle/): combines bit permutation and inversion to shuffle bits in an integer
 
-Instances of all classes are hashable and should be treated as immutable. Instances can be compared for equality within the class.
+All class instances are hashable and should be treated as immutable. Instances can be compared for equality within the same class.
 
 
 ## License
