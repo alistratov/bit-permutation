@@ -3,23 +3,61 @@
 version: 2.1
 orbs:
   python: circleci/python@2
+
 jobs:
-  test-python:
-    # Install dependencies and run tests
+  test:
     docker:
-      - image: cimg/python:3.10-node
+      - image: cimg/python:<< parameters.python-version >>
+    macos:
+      xcode: "14.0.0"  # Specify the macOS version
+    machine:
+      image: "windows-server-2019"  # Specify the Windows version
+    parameters:
+      os:
+        type: string
+        default: "linux"
+      python-version:
+        type: string
+        default: "3.10"
+
     steps:
       - checkout
-      - python/install-packages
       - run:
-          name: Install pytest
-          command: pip install pytest
+          name: Set up Python on Linux
+          when: << parameters.os == "linux" >>
+          command: |
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+            pip install pytest
+      - run:
+          name: Set up Python on macOS
+          when: << parameters.os == "macos" >>
+          command: |
+            brew install python@<< parameters.python-version >>
+            python3 -m pip install --upgrade pip
+            pip install -r requirements.txt
+            pip install pytest
+      - run:
+          name: Set up Python on Windows
+          when: << parameters.os == "windows" >>
+          command: |
+            choco install python --version=<< parameters.python-version >>
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+            pip install pytest
       - run:
           name: Run tests
-          command: pytest --junitxml=junit.xml || ((($? == 5)) && echo 'Did not find any tests to run.')
-      - store_test_results:
-          path: junit.xml
+          command: pytest
+
 workflows:
-  build-and-test:
+  version: 2
+  test:
+    matrix:
+      parameters:
+        os: ["linux", "macos", "windows"]
+        python-version: ["3.10", "3.11", "3.12"]
     jobs:
-      - test-python
+      - test:
+          name: Test on << matrix.os >> with Python << matrix.python-version >>
+          os: << matrix.os >>
+          python-version: << matrix.python-version >>
