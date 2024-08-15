@@ -1,7 +1,7 @@
 import unittest
 
 from bit_permutation import BitShuffle, BitPermutation, BitInversion
-from .sample_iters import test_list, test_tuple, TestIterator, test_gen
+from .sample_iters import sample_list, sample_tuple, SampleIterator, sample_gen
 
 
 class TestBitShuffle(unittest.TestCase):
@@ -159,12 +159,12 @@ class TestBitShuffle(unittest.TestCase):
         s = [1, 3, 0, 2]
         u = [2, 0, 3, 1]
 
-        self.assertEqual(list(bs.shuffle_iter(test_list)), s)
-        self.assertEqual(list(bs.shuffle_iter(test_tuple)), s)
-        self.assertEqual(list(bs.shuffle_iter(TestIterator())), s)
-        self.assertEqual(list(bs.shuffle_iter(test_gen())), s)
+        self.assertEqual(list(bs.shuffle_iter(sample_list)), s)
+        self.assertEqual(list(bs.shuffle_iter(sample_tuple)), s)
+        self.assertEqual(list(bs.shuffle_iter(SampleIterator())), s)
+        self.assertEqual(list(bs.shuffle_iter(sample_gen())), s)
 
-        self.assertEqual(list(bs.unshuffle_iter(test_list)), u)
-        self.assertEqual(list(bs.unshuffle_iter(test_list)), u)
-        self.assertEqual(list(bs.unshuffle_iter(test_list)), u)
-        self.assertEqual(list(bs.unshuffle_iter(test_list)), u)
+        self.assertEqual(list(bs.unshuffle_iter(sample_list)), u)
+        self.assertEqual(list(bs.unshuffle_iter(sample_list)), u)
+        self.assertEqual(list(bs.unshuffle_iter(sample_list)), u)
+        self.assertEqual(list(bs.unshuffle_iter(sample_list)), u)
