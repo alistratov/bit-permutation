@@ -4,14 +4,14 @@ It offers methods for generating permutations, checking permutation properties, 
 between different permutation representations.
 """
 import random
-from collections.abc import Iterable
+from collections.abc import Iterable, Generator, Callable
 
 from .constants import MAX_PERMUTATION_LENGTH, PERM_2, PERM_3_NOFP, PERM_3_INVOL
 
 
 class BitPermutation:
     # --- Helpers ---
-    factorials = []
+    factorials: list[int] = []
 
     @classmethod
     def _factorial(cls, n: int) -> int:
@@ -100,9 +100,9 @@ class BitPermutation:
         return all(0 <= x < self._n for x in self._p) and len(self._p) == self._n and len(set(self._p)) == self._n
 
     @staticmethod
-    def _gen_code(permutation: tuple[int, ...]) -> callable:
+    def _gen_code(permutation: tuple[int, ...]) -> Callable[[int], int]:
         # Group bits by their distance from the original position
-        distances = {}
+        distances: dict[int, int] = {}
         for i, v in enumerate(permutation):
             distances[v - i] = distances.get(v - i, 0) | (1 << i)
         table = [(mask, distance) for distance, mask in distances.items()]
@@ -183,7 +183,7 @@ class BitPermutation:
         return sum(self.as_lehmer_code())
 
     # --- Transformation ---
-    def _apply_function(self, x: int, fun: callable) -> int:
+    def _apply_function(self, x: int, fun: Callable[[int], int]) -> int:
         return x & self._neg_lowest_mask | fun(x & self._lowest_mask)
 
     def permute(self, x: int) -> int:
@@ -197,6 +197,20 @@ class BitPermutation:
         Apply the inverse of permutation to the given integer.
         """
         return self._apply_function(x, self._fn_inverse)
+
+    def permute_iter(self, s: Iterable) -> Generator[int, int, None]:
+        """
+        Apply the permutation to the given iterable, returning a generator.
+        """
+        for x in s:
+            yield self.permute(x)
+
+    def invert_iter(self, s: Iterable) -> Generator[int, int, None]:
+        """
+        Apply the inverse of permutation to the given iterable, returning a generator.
+        """
+        for x in s:
+            yield self.invert(x)
 
     # --- Representation ---
     def as_tuple(self) -> tuple[int, ...]:

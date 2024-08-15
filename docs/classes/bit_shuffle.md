@@ -66,6 +66,13 @@ unshuffle(x: int) -> int
 ```
 Applies the inverse permutation and bit inversion to the input integer `x`, returning the original value.
 
+#### Generators 
+```python
+shuffle_iter(self, s: Iterable[int]) -> Generator[int, int, None]
+unshuffle_iter(self, s: Iterable[int]) -> Generator[int, int, None]
+```
+Applies the shuffle or unshuffle function to each element in the input iterable `s`. The result is a generator that yields integers with shuffled or unsuffled bits.
+
 ### Representations
 #### as_tuple
 ```python

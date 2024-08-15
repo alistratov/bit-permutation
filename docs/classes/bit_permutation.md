@@ -95,6 +95,13 @@ invert(x: int) -> int
 ```
 Applies the inverse of the permutation to the input integer `x` and returns the result.
 
+#### Generators 
+```python
+permute_iter(self, s: Iterable) -> Generator[int, int, None]
+invert_iter(self, s: Iterable) -> Generator[int, int, None]
+```
+Applies the permutation or its inverse to each element in the input iterable `s`. The result is a generator that yields integers with permuted bits.
+
 ### Representations
 #### as_tuple
 ```python

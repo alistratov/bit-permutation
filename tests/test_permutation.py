@@ -1,6 +1,7 @@
 import unittest
 
 from bit_permutation import BitPermutation
+from .sample_iters import test_list, test_tuple, TestIterator, test_gen
 
 
 class TestBitPermutation(unittest.TestCase):
@@ -352,3 +353,17 @@ class TestBitPermutation(unittest.TestCase):
         for c in cases:
             bp = BitPermutation(c['p'])
             self.assertEqual(bp.as_cycles(), c['cycles'])
+
+    def test_iterable(self):
+        bp = BitPermutation((1, 0))
+        expected = [0, 2, 1, 3]
+
+        self.assertEqual(list(bp.permute_iter(test_list)), expected)
+        self.assertEqual(list(bp.permute_iter(test_tuple)), expected)
+        self.assertEqual(list(bp.permute_iter(TestIterator())), expected)
+        self.assertEqual(list(bp.permute_iter(test_gen())), expected)
+
+        self.assertEqual(list(bp.invert_iter(test_list)), expected)
+        self.assertEqual(list(bp.invert_iter(test_list)), expected)
+        self.assertEqual(list(bp.invert_iter(test_list)), expected)
+        self.assertEqual(list(bp.invert_iter(test_list)), expected)
