@@ -2,6 +2,7 @@
 The BitInversion class provides functionality to flip (or invert bits), using XOR operation.
 """
 import random
+from collections.abc import Iterable, Generator
 
 from .constants import MAX_PERMUTATION_LENGTH
 
@@ -65,6 +66,13 @@ class BitInversion:
         Apply the XOR to the given integer.
         """
         return x ^ self._x
+
+    def apply_iter(self, s: Iterable) -> Generator[int, int, None]:
+        """
+        Apply the XOR to the given iterable, returning a generator.
+        """
+        for x in s:
+            yield x ^ self._x
 
     # --- Constructors ---
     @classmethod

@@ -1,6 +1,7 @@
 import unittest
 
 from bit_permutation import BitShuffle, BitPermutation, BitInversion
+from .sample_iters import test_list, test_tuple, TestIterator, test_gen
 
 
 class TestBitShuffle(unittest.TestCase):
@@ -152,3 +153,18 @@ class TestBitShuffle(unittest.TestCase):
         big = BitShuffle.generate_random(1023)
         packed = big.pack()
         self.assertEqual(BitShuffle.unpack(packed), big)
+
+    def test_iterable(self):
+        bs = BitShuffle(BitPermutation((1, 0)), BitInversion(1))
+        s = [1, 3, 0, 2]
+        u = [2, 0, 3, 1]
+
+        self.assertEqual(list(bs.shuffle_iter(test_list)), s)
+        self.assertEqual(list(bs.shuffle_iter(test_tuple)), s)
+        self.assertEqual(list(bs.shuffle_iter(TestIterator())), s)
+        self.assertEqual(list(bs.shuffle_iter(test_gen())), s)
+
+        self.assertEqual(list(bs.unshuffle_iter(test_list)), u)
+        self.assertEqual(list(bs.unshuffle_iter(test_list)), u)
+        self.assertEqual(list(bs.unshuffle_iter(test_list)), u)
+        self.assertEqual(list(bs.unshuffle_iter(test_list)), u)

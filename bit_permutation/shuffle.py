@@ -1,6 +1,8 @@
 """
 The BitShuffle class acts as a container that combines both a permutation and an inversion operation.
 """
+from collections.abc import Iterable, Generator
+
 from .permutation import BitPermutation
 from .xor import BitInversion
 
@@ -61,6 +63,14 @@ class BitShuffle:
 
     def unshuffle(self, x: int) -> int:
         return self._bp.invert(self._bi.apply(x))
+
+    def shuffle_iter(self, s: Iterable[int]) -> Generator[int, int, None]:
+        for x in s:
+            yield self.shuffle(x)
+
+    def unshuffle_iter(self, s: Iterable[int]) -> Generator[int, int, None]:
+        for x in s:
+            yield self.unshuffle(x)
 
     # --- Representation ---
     def as_tuple(self) -> tuple[int, ...]:

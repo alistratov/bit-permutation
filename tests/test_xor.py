@@ -1,6 +1,7 @@
 import unittest
 
 from bit_permutation import BitInversion
+from .sample_iters import test_list, test_tuple, TestIterator, test_gen
 
 
 class TestBitInversion(unittest.TestCase):
@@ -111,3 +112,11 @@ class TestBitInversion(unittest.TestCase):
         self.assertEqual(bi, 0b11111111111111111111111111111111)
         bi = BitInversion.generate_random(32, 1.0)
         self.assertEqual(bi, 0b10000000000000000000000000000000)
+
+    def test_iterable(self):
+        bi = BitInversion(3)
+        expected = [3, 2, 1, 0]
+        self.assertEqual(list(bi.apply_iter(test_list)), expected)
+        self.assertEqual(list(bi.apply_iter(test_tuple)), expected)
+        self.assertEqual(list(bi.apply_iter(TestIterator())), expected)
+        self.assertEqual(list(bi.apply_iter(test_gen())), expected)

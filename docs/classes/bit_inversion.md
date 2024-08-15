@@ -46,6 +46,12 @@ apply(x: int) -> int
 ```
 Applies the inversion pattern to the input integer `x`. The result is the integer with inverted bits. Because XOR operation is reversible, applying the same inversion pattern twice will return the original integer.
 
+#### Generator 
+```python
+apply_iter(self, s: Iterable) -> Generator[int, int, None]
+```
+Applies the inversion pattern to each element in the input iterable `s`. The result is a generator that yields integers with inverted bits.
+
 ### Examples
 The XOR operation is well-known and requires no further explanation.
 
