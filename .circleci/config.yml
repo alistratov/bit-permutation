@@ -4,60 +4,95 @@ version: 2.1
 orbs:
   python: circleci/python@2
 
-jobs:
-  test:
+executors:
+  docker:
     docker:
       - image: cimg/python:<< parameters.python-version >>
+  macos:
     macos:
-      xcode: "14.0.0"  # Specify the macOS version
+      xcode: 15.3.0
+  windows:
     machine:
-      image: "windows-server-2019"  # Specify the Windows version
+      image: 'windows-server-2022-gui:current'
+
+jobs:
+  test:
     parameters:
       os:
-        type: string
-        default: "linux"
+        type: executor
       python-version:
         type: string
-        default: "3.10"
-
+    executor: << parameters.os >>
     steps:
       - checkout
-      - run:
-          name: Set up Python on Linux
-          when: << parameters.os == "linux" >>
-          command: |
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
-            pip install pytest
-      - run:
-          name: Set up Python on macOS
-          when: << parameters.os == "macos" >>
-          command: |
-            brew install python@<< parameters.python-version >>
-            python3 -m pip install --upgrade pip
-            pip install -r requirements.txt
-            pip install pytest
-      - run:
-          name: Set up Python on Windows
-          when: << parameters.os == "windows" >>
-          command: |
-            choco install python --version=<< parameters.python-version >>
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
-            pip install pytest
+      - python/install
       - run:
           name: Run tests
-          command: pytest
+          command: python -V
+#          command: pytest
 
 workflows:
-  version: 2
-  test:
-    matrix:
-      parameters:
-        os: ["linux", "macos", "windows"]
-        python-version: ["3.10", "3.11", "3.12"]
+  all-tests:
     jobs:
       - test:
-          name: Test on << matrix.os >> with Python << matrix.python-version >>
-          os: << matrix.os >>
-          python-version: << matrix.python-version >>
+          matrix:
+            parameters:
+              os: [docker, linux, macos]
+              python-version: ["3.10", "3.11", "3.12"]
+#jobs:
+#  test:
+#    docker:
+#      - image: cimg/python:<< parameters.python-version >>
+#    macos:
+#      xcode: "14.0.0"  # Specify the macOS version
+#    machine:
+#      image: "windows-server-2019"  # Specify the Windows version
+#    parameters:
+#      os:
+#        type: string
+#        default: "linux"
+#      python-version:
+#        type: string
+#        default: "3.10"
+#
+#    steps:
+#      - checkout
+#      - run:
+#          name: Set up Python on Linux
+#          when: << parameters.os == "linux" >>
+#          command: |
+#            python -m pip install --upgrade pip
+#            pip install -r requirements.txt
+#            pip install pytest
+#      - run:
+#          name: Set up Python on macOS
+#          when: << parameters.os == "macos" >>
+#          command: |
+#            brew install python@<< parameters.python-version >>
+#            python3 -m pip install --upgrade pip
+#            pip install -r requirements.txt
+#            pip install pytest
+#      - run:
+#          name: Set up Python on Windows
+#          when: << parameters.os == "windows" >>
+#          command: |
+#            choco install python --version=<< parameters.python-version >>
+#            python -m pip install --upgrade pip
+#            pip install -r requirements.txt
+#            pip install pytest
+#      - run:
+#          name: Run tests
+#          command: pytest
+#
+#workflows:
+#  version: 2
+#  test:
+#    matrix:
+#      parameters:
+#        os: ["linux", "macos", "windows"]
+#        python-version: ["3.10", "3.11", "3.12"]
+#    jobs:
+#      - test:
+#          name: Test on << matrix.os >> with Python << matrix.python-version >>
+#          os: << matrix.os >>
+#          python-version: << matrix.python-version >>
