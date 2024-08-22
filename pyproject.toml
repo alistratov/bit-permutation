@@ -1,6 +1,6 @@
 [project]
 name = "bit-permutation"
-version = "1.0.20"
+version = "1.0.21"
 authors = [
   { name="Oleh Alistratov", email="alistratov.dev@gmail.com" },
 ]
@@ -8,7 +8,7 @@ description = "Shuffle bits in integer numbers"
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
@@ -25,7 +25,7 @@ build-backend = "flit_core.buildapi"
 
 [tool.poetry]
 name = "bit-permutation"
-version = "1.0.20"
+version = "1.0.21"
 description = "Shuffle bits in integer numbers"
 authors = ["Oleh Alistratov <alistratov.dev@gmail.com>"]
 license = "Apache-2.0"
