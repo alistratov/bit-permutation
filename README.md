@@ -9,7 +9,7 @@ Shuffle bits in integer numbers.
 pip install bit-permutation
 ```
 
-```python-repl
+```pycon
 >>> from bit_permutation import BitShuffle
 
 >>> bs = BitShuffle.generate_random(16)  # Permutation for lower 16 bits
