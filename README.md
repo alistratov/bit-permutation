@@ -43,7 +43,7 @@ While this technique is an example of security through obscurity and should not 
 3. **Not for mathematical applications**: although the module provides functions for checking permutation properties, it is not intended for rigorous mathematical applications. The functionality may be useful for basic operations and educational purposes but is insufficient for advanced combinatorics or group theory studies.
 
 ## Documentation
-Read the full documentation at [Read the docs](https://bit-permutation.readthedocs.io/en/latest/).
+Read the full documentation at [Read the docs](https://bit-permutation.alistratov.name/en/latest/).
 
 The `bit-permutation` package provides three classes for export:
 * [BitPermutation](https://bit-permutation.readthedocs.io/en/latest/classes/bit_permutation/): permutes bits in an integer

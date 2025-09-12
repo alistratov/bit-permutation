@@ -17,7 +17,7 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/alistratov/bit-permutation"
 Issues = "https://github.com/alistratov/bit-permutation/issues"
-Documentation = "https://bit-permutation.readthedocs.io/en/latest/"
+Documentation = "https://bit-permutation.alistratov.name/en/latest/"
 
 [build-system]
 requires = ["flit_core>=3.4"]
