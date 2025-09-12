@@ -46,9 +46,9 @@ While this technique is an example of security through obscurity and should not 
 Read the full documentation at [Read the docs](https://bit-permutation.alistratov.name/en/latest/).
 
 The `bit-permutation` package provides three classes for export:
-* [BitPermutation](https://bit-permutation.readthedocs.io/en/latest/classes/bit_permutation/): permutes bits in an integer
-* [BitInversion](https://bit-permutation.readthedocs.io/en/latest/classes/bit_inversion/): inverts bits in an integer using XOR
-* [BitShuffle](https://bit-permutation.readthedocs.io/en/latest/classes/bit_shuffle/): combines bit permutation and inversion to shuffle bits in an integer
+* [BitPermutation](https://bit-permutation.alistratov.name/en/latest/classes/bit_permutation/): permutes bits in an integer
+* [BitInversion](https://bit-permutation.alistratov.name/en/latest/classes/bit_inversion/): inverts bits in an integer using XOR
+* [BitShuffle](https://bit-permutation.alistratov.name/en/latest/classes/bit_shuffle/): combines bit permutation and inversion to shuffle bits in an integer
 
 All class instances are hashable and should be treated as immutable. Instances can be compared for equality within the same class.
 
