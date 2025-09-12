@@ -1,6 +1,6 @@
 [project]
 name = "bit-permutation"
-version = "1.0.21"
+version = "1.0.22"
 authors = [
   { name="Oleh Alistratov", email="alistratov.dev@gmail.com" },
 ]
@@ -25,7 +25,7 @@ build-backend = "flit_core.buildapi"
 
 [tool.poetry]
 name = "bit-permutation"
-version = "1.0.21"
+version = "1.0.22"
 description = "Shuffle bits in integer numbers"
 authors = ["Oleh Alistratov <alistratov.dev@gmail.com>"]
 license = "Apache-2.0"
