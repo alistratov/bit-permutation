@@ -41,9 +41,9 @@ Typical scenarios where **bit-permutation** is helpful:
 
 ## Disclaimer
 !!! warning ""
-1. **Not intended for cryptographic use**: this module does not provide the guarantees required for cryptographic applications.  
-2. **Not suitable for highly loaded applications**: performance is acceptable for many tasks but not optimized for real-time or heavy workloads. See [Performance considerations](#performance-considerations).
-3. **Not for advanced mathematics**: while basic checks of permutation properties are included, the module is not a substitute for advanced combinatorics or group theory tools.
+    1. **Not intended for cryptographic use**: this module does not provide the guarantees required for cryptographic applications.  
+    2. **Not suitable for highly loaded applications**: performance is acceptable for many tasks but not optimized for real-time or heavy workloads. See [Performance considerations](#performance-considerations).
+    3. **Not for advanced mathematics**: while basic checks of permutation properties are included, the module is not a substitute for advanced combinatorics or group theory tools.
 
 ---
 
