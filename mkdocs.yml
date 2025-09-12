@@ -1,6 +1,7 @@
 site_name: Bit Permutation
 site_description: Python library for permuting, shuffling, and inverting bits in integers. Reversible transforms for ID obfuscation and fast bit-level operations.
 site_author: Oleh Alistratov
+site_url: https://bit-permutation.alistratov.name/
 repo_url: https://github.com/alistratov/bit-permutation
 edit_uri: blob/main/docs/
 
@@ -14,6 +15,12 @@ nav:
   - License: license.md
 
 theme: readthedocs
+
+plugins:
+  - search
+  - sitemap:
+      changefreq: monthly
+      priority: 0.5
 
 markdown_extensions:
   - admonition
