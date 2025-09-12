@@ -1,10 +1,16 @@
-The pure-Python `bit-permutation` package provides tools for shuffling bits in integers, including classes designed for bit permutations and inversions.
+`bit-permutation` is a pure-Python library for **permuting, shuffling, and inverting bits** in integers.  
 
-This module is primarily useful for obscuring monotonically increasing numbers, such as auto-incrementing database identifiers, which can be vulnerable to [Insecure Direct Object Reference](https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html) as described by OWASP. By rearranging and inverting bits within these identifiers, the sequential nature of the numbers becomes less obvious, adding a layer of security.
+It provides reversible (bijective) integer transforms, allowing you to hide sequential patterns in numbers, reorder binary digits, and create deterministic yet non-cryptographic mappings.  
 
-While this technique is an example of security through obscurity and should not replace comprehensive information hiding practices, it can still be valuable in various scenarios. The module allows to create a defined or random combination of bit permutation and inversion, resulting in a bijective transformation of a set of integers.
+This module is especially useful for **obfuscating monotonically increasing identifiers** (e.g. auto-incrementing database IDs), where exposing predictable values can lead to [Insecure Direct Object Reference](https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html) vulnerabilities.  
+By shuffling and inverting bits, the sequential nature of these numbers becomes less obvious, while the mapping remains fully reversible.  
+
+While this technique is an example of security through obscurity and should not replace comprehensive information hiding practices, it can still be valuable in various scenarios.
+
+---
 
 ## Table of contents
+* [Use cases](#use-cases)
 * [Disclaimer](#disclaimer)
 * [Installation](#installation)
 * [Example](#example)
@@ -16,16 +22,33 @@ While this technique is an example of security through obscurity and should not 
 * [References](references.md)
 * [License](license.md)
 
+---
+
+## Use cases
+
+Typical scenarios where **bit-permutation** is helpful:
+
+- **Obfuscating database IDs**  
+  Hide predictable, auto-incrementing identifiers by mapping them through a reversible permutation of bits. This prevents outsiders from easily inferring how many records exist or guessing other valid IDs.
+
+- **Generating deterministic pseudo-random IDs**  
+  Create identifiers that look random but are always reversible to their original values. Useful for lightweight obfuscation where cryptographic strength is not required.
+
+- **Reversible integer encoding**  
+  Transform integers into new bit patterns for educational demos, reversible hashing, or simple obfuscation in data pipelines.
+
+---
 
 ## Disclaimer
 !!! warning ""
-    1. **Not intended for cryptographic use**: this module is not designed or intended for use in cryptography. The algorithms and functions provided do not offer the security guarantees required for cryptographic applications.
-    1. **Not suitable for highly loaded applications**: the module is not optimized for performance in highly loaded or real-time environments. It should not be used in scenarios where performance and efficiency are critical. See also the [Performance considerations](#performance-considerations) section.
-    1. **Not for mathematical applications**: although the module provides functions for checking permutation properties, it is not intended for rigorous mathematical applications. The functionality may be useful for basic operations and educational purposes but is insufficient for advanced combinatorics or group theory studies.
+1. **Not intended for cryptographic use**: this module does not provide the guarantees required for cryptographic applications.  
+2. **Not suitable for highly loaded applications**: performance is acceptable for many tasks but not optimized for real-time or heavy workloads. See [Performance considerations](#performance-considerations).
+3. **Not for advanced mathematics**: while basic checks of permutation properties are included, the module is not a substitute for advanced combinatorics or group theory tools.
 
+---
 
 ## Installation
-Requires Python version 3.10 or higher. To install the package, run:
+Requires Python version 3.10 or higher. To install:
 ```bash
 pip install bit-permutation
 ```
@@ -36,7 +59,7 @@ pip install bit-permutation
 from bit_permutation import BitShuffle
 
 # Generate a random permutation for the lower 16 bits of an integer.
-# Any bits higher than the 16th bit remain unaffected.
+# Bits above the 16th remain unaffected.
 bs = BitShuffle.generate_random(16)
 
 # Sequential numbers turn into a list, for example,
@@ -47,25 +70,34 @@ shuffled = [bs.shuffle(x) for x in range(10)]
 # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 original = [bs.unshuffle(y) for y in shuffled]
 
-# Serialize the BitShuffle object into a single integer, allowing
-# the object to be restored later using BitShuffle.unpack().
+# Serialize the BitShuffle object into a single integer, 
+# which can later be restored using BitShuffle.unpack().
 # Example output: a large integer like 614290679212893317370896
 print(bs.pack())
 ```
 
+---
+
 ## Package contents
-The  `bit-permutation` package provides three classes for export:
+The  `bit-permutation` package exports three core classes:
 
 * [BitPermutation](classes/bit_permutation.md): permutes bits in an integer
 * [BitInversion](classes/bit_inversion.md): inverts bits in an integer using XOR
 * [BitShuffle](classes/bit_shuffle.md): combines bit permutation and inversion to shuffle bits in an integer
 
-All class instances are hashable and should be treated as immutable. Instances can be compared for equality within the same class.
+All instances are hashable, comparable for equality within the same class, and should be treated as immutable.
 
+---
 
 ## Performance considerations
 The module uses basic bitwise operations such as shifts and mask applications to perform permutations, rather than advanced algorithms optimized for speed, like the Beneš network or byte swapping. While these methods are not the most efficient, they are straightforward and adequate for many use cases.
 
 As Python is an interpreted language, it is generally slower than compiled languages. The speed of execution can vary depending on several factors, including the specific permutation chosen and the number of bits involved.
 
-However, composite tests indicate that on a modern processor core (as of 2024), the module can perform approximately 1 million operations per second for 16-bit numbers and 100,000 operations per second for 128-bit numbers.
+However, benchmarks indicate that on a modern processor core (as of 2024), the module can perform approximately 1 million operations per second for 16-bit numbers and 100,000 operations per second for 128-bit numbers.
+
+---
+
+## Related terms
+
+bit permutation · bit shuffle · bit reordering · permute bits in Python · invert bits · reversible mapping · bijective integer transform · ID obfuscation · integer obfuscation · non-cryptographic transform · fast bit operations · bitwise manipulation
