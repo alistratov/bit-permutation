@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bit-permutation.alistratov.name/sitemap.xml
